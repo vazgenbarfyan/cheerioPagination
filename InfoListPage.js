@@ -1,6 +1,7 @@
 const rp = require('request-promise');
 const $ = require('cheerio');
 const getSinglePageInfo = require('./singlePage');
+const domain = ''
 
 const getCurrentListValues = (url) => {
     return rp(url).then(function(html) {
@@ -14,7 +15,7 @@ const getCurrentListValues = (url) => {
 
         return Promise.all(
             uris.map(function(url) {
-                return getSinglePageInfo('https://www.spyur.am/' + url);
+                return getSinglePageInfo(domain + url);
             })
         );
     }).then(function(listValues) {
